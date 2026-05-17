@@ -3,7 +3,6 @@ import { useParams, Navigate } from 'react-router-dom';
 import { getProjectBySlug, getNextProject } from '@/data/projects';
 import ProjectHeroSection from '@/sections/work-single/ProjectHeroSection';
 import ProjectInfoSection from '@/sections/work-single/ProjectInfoSection';
-import ProjectGallerySection from '@/sections/work-single/ProjectGallerySection';
 import NextProjectSection from '@/sections/work-single/NextProjectSection';
 import CTASection from '@/sections/home/CTASection';
 
@@ -24,7 +23,6 @@ export default function WorkSinglePage() {
     <>
       <ProjectHeroSection project={project} />
       <ProjectInfoSection project={project} />
-      <ProjectGallerySection project={project} />
       {nextProject && <NextProjectSection nextProject={nextProject} />}
       <CTASection
         headline="Have a project?"
