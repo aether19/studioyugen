@@ -47,7 +47,7 @@ export default function WorkGridSection() {
 
                 {/* Year */}
                 <span className="font-body text-label text-foreground/20 tracking-widest shrink-0 hidden sm:block">
-                  {project.info.year}
+                  {project.info?.year}
                 </span>
 
                 {/* Arrow */}

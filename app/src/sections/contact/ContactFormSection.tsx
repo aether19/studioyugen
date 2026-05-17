@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Container from '@/components/layout/Container';
 import StaggerReveal from '@/components/animation/StaggerReveal';
 import ScrollReveal from '@/components/animation/ScrollReveal';
+import { submitContactForm } from '@/lib/contact';
+import { toast } from 'sonner';
 
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
@@ -10,16 +12,26 @@ export default function ContactFormSection() {
     needs: '',
     budget: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Project Inquiry from ${formData.name} - ${formData.business}`;
-    const body = `Name: ${formData.name}\nBusiness: ${formData.business}\nBudget: ${formData.budget}\n\nWhat I need:\n${formData.needs}`;
-    window.location.href = `mailto:contact.studioyugen@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setIsLoading(true);
+
+    try {
+      await submitContactForm(formData);
+      toast.success('Thank you! We received your inquiry and will be in touch soon.');
+      setFormData({ name: '', business: '', needs: '', budget: '' });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast.error('Failed to send your inquiry. Please try again or email us directly.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const inputClass = "w-full bg-transparent border-0 border-b border-foreground/10 py-4 font-body text-body text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-accent transition-colors duration-300";
@@ -97,9 +109,10 @@ export default function ContactFormSection() {
               <div data-stagger-child>
                 <button
                   type="submit"
-                  className="group flex items-center gap-4 font-body text-label tracking-widest text-foreground border border-foreground/20 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300"
+                  disabled={isLoading}
+                  className="group flex items-center gap-4 font-body text-label tracking-widest text-foreground border border-foreground/20 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Send Message</span>
+                  <span>{isLoading ? 'Sending...' : 'Send Message'}</span>
                   <span className="w-6 h-px bg-current group-hover:w-10 transition-all duration-300" />
                 </button>
               </div>
