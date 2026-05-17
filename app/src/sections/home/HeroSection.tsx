@@ -11,7 +11,7 @@ export default function HeroSection() {
         style={{ animationDelay: '200ms', animationFillMode: 'forwards', animationDuration: '600ms' }}
       >
         <Container className="flex items-center justify-between h-10">
-          <span className="font-body text-label text-foreground/20 tracking-widest">Est. 2023</span>
+          <span className="font-body text-label text-foreground/20 tracking-widest">Est. 2024</span>
           <span className="font-body text-label text-foreground/20 tracking-widest">Creative Studio</span>
           <span className="font-body text-label text-foreground/20 tracking-widest">Worldwide</span>
         </Container>

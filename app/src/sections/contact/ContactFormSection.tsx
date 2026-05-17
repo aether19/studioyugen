@@ -76,14 +76,21 @@ export default function ContactFormSection() {
                   name="budget"
                   value={formData.budget}
                   onChange={handleChange}
-                  className={`${inputClass} bg-[#080808]`}
+                  className="w-full border-0 border-b border-foreground/10 py-4 font-body text-body focus:outline-none focus:border-accent transition-colors duration-300 appearance-none"
+                  style={{
+                    backgroundColor: '#080808',
+                    color: formData.budget ? '#e8e2d8' : 'rgba(232,226,216,0.2)',
+                    colorScheme: 'dark',
+                  }}
                 >
-                  <option value="" disabled>Select a range...</option>
-                  <option value="Under $1,000">Under $1,000</option>
-                  <option value="$1,000 - $5,000">$1,000 - $5,000</option>
-                  <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                  <option value="$10,000+">$10,000+</option>
-                  <option value="Not sure yet">Not sure yet</option>
+                  <option value="" disabled style={{ backgroundColor: '#111111', color: 'rgba(232,226,216,0.4)' }}>
+                    Select a range...
+                  </option>
+                  <option value="Under $1,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>Under $1,000</option>
+                  <option value="$1,000 - $5,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$1,000 - $5,000</option>
+                  <option value="$5,000 - $10,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$5,000 - $10,000</option>
+                  <option value="$10,000+" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$10,000+</option>
+                  <option value="Not sure yet" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>Not sure yet</option>
                 </select>
               </div>
 
@@ -118,7 +125,7 @@ export default function ContactFormSection() {
               <div>
                 <p className="font-body text-label text-accent tracking-widest mb-4">Locations</p>
                 <ul className="space-y-2">
-                  {['USA', 'Canada', 'Australia', 'Algeria'].map((loc) => (
+                  {['Europe', 'North America', 'Australia', 'GCC'].map((loc) => (
                     <li key={loc} className="font-body text-body text-foreground/40">{loc}</li>
                   ))}
                 </ul>

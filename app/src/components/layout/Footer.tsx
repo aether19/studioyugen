@@ -17,15 +17,21 @@ export default function Footer() {
                 Have a project?{' '}
                 <Link
                   to="/contact"
-                  className="italic text-foreground/30 hover:text-accent transition-colors duration-300 underline underline-offset-8 decoration-foreground/10"
+                  className="italic text-foreground hover:text-accent transition-colors duration-300"
                 >
                   Let&apos;s talk.
                 </Link>
               </h2>
+              <a
+                href="mailto:contact.studioyugen@gmail.com"
+                className="mt-4 inline-block font-body text-body text-foreground/60 hover:text-foreground transition-colors duration-200"
+              >
+                contact.studioyugen@gmail.com
+              </a>
             </div>
             <Link
               to="/contact"
-              className="group flex items-center gap-4 font-body text-label tracking-widest text-foreground border border-foreground/15 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300 shrink-0"
+              className="group flex items-center gap-4 font-body text-label tracking-widest text-foreground border border-foreground/20 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300 shrink-0"
             >
               <span>Start Project</span>
               <span className="w-5 h-px bg-current group-hover:w-8 transition-all duration-300" />
@@ -40,7 +46,7 @@ export default function Footer() {
               Yugen
             </Link>
             <p className="mt-4 font-body text-body-sm text-foreground/25 leading-relaxed max-w-[200px]">
-              Boutique creative studio. Branding, web design & development.
+              Boutique creative studio. Branding, web design and development.
             </p>
           </div>
 
@@ -51,7 +57,7 @@ export default function Footer() {
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase()}`}
-                    className="font-body text-body-sm text-foreground/30 hover:text-foreground transition-colors duration-200"
+                    className="font-body text-body-sm text-foreground/40 hover:text-foreground transition-colors duration-200"
                   >
                     {item}
                   </Link>
@@ -67,7 +73,7 @@ export default function Footer() {
                 <li key={item}>
                   <Link
                     to="/services"
-                    className="font-body text-body-sm text-foreground/30 hover:text-foreground transition-colors duration-200"
+                    className="font-body text-body-sm text-foreground/40 hover:text-foreground transition-colors duration-200"
                   >
                     {item}
                   </Link>
@@ -82,13 +88,13 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:contact.studioyugen@gmail.com"
-                  className="font-body text-body-sm text-foreground/30 hover:text-foreground transition-colors duration-200"
+                  className="font-body text-body-sm text-foreground/40 hover:text-foreground transition-colors duration-200"
                 >
                   contact.studioyugen@gmail.com
                 </a>
               </li>
-              <li className="font-body text-body-sm text-foreground/15">
-                USA · Canada · Australia · Algeria
+              <li className="font-body text-body-sm text-foreground/20">
+                Europe · North America · Australia · GCC
               </li>
             </ul>
           </div>
@@ -97,7 +103,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-body text-label text-foreground/15 tracking-widest">
-            © 2026 Yugen Studio. All rights reserved.
+            2026 Yugen Studio. All rights reserved.
           </p>
           <p className="font-body text-label text-foreground/15 tracking-widest">
             Crafted with precision.

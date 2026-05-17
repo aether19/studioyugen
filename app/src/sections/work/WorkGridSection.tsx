@@ -5,50 +5,53 @@ import ScrollReveal from '@/components/animation/ScrollReveal';
 
 export default function WorkGridSection() {
   return (
-    <section className="py-16 lg:py-24 bg-background">
+    <section className="py-8 lg:py-16 bg-background">
       <Container>
         <div>
           {projects.map((project, i) => (
             <ScrollReveal key={project.id} delay={i * 0.04}>
               <Link
                 to={`/work/${project.slug}`}
-                className="group grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 py-12 border-b border-foreground/[0.08] hover:border-foreground/20 transition-colors duration-300 items-center"
+                className="group flex items-center gap-6 py-7 border-b border-foreground/[0.08] hover:border-foreground/20 transition-colors duration-300"
               >
-                {/* Image */}
-                <div className={`aspect-[16/10] overflow-hidden bg-gray-100 ${i % 2 === 1 ? 'md:order-2' : ''}`}>
+                {/* Small thumbnail only */}
+                <div className="w-20 h-14 shrink-0 overflow-hidden bg-gray-100">
                   <img
                     src={project.image}
                     alt={project.client}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
 
-                {/* Info */}
-                <div className={`flex flex-col justify-center gap-5 ${i % 2 === 1 ? 'md:order-1' : ''} md:px-8`}>
-                  <span className="font-body text-label text-foreground/20 tracking-widest">
-                    {String(i + 1).padStart(2, '0')} — {project.info.year || '2024'}
+                {/* Index + Title */}
+                <div className="flex-1 min-w-0">
+                  <span className="font-body text-label text-foreground/20 tracking-widest block mb-1">
+                    {String(i + 1).padStart(2, '0')}
                   </span>
-                  <h2 className="font-display text-h1 text-foreground group-hover:text-accent transition-colors duration-300">
+                  <h2 className="font-display text-h2 text-foreground group-hover:text-accent transition-colors duration-300 truncate">
                     {project.client}
                   </h2>
-                  <p className="font-body text-body text-foreground/30 leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {[project.industry, ...project.services].map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-body text-label tracking-widest text-foreground/25 border border-foreground/[0.08] px-3 py-1.5"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3 mt-3 text-foreground/25 group-hover:text-accent transition-colors duration-300">
-                    <span className="font-body text-label tracking-widest">View Project</span>
-                    <span className="w-8 h-px bg-current group-hover:w-16 transition-all duration-300" />
-                  </div>
                 </div>
+
+                {/* Tags — hidden on small */}
+                <div className="hidden md:flex items-center gap-2 shrink-0">
+                  {[project.industry, ...project.services].map((tag) => (
+                    <span
+                      key={tag}
+                      className="font-body text-label tracking-widest text-foreground/20 border border-foreground/[0.08] px-3 py-1.5 whitespace-nowrap"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Year */}
+                <span className="font-body text-label text-foreground/20 tracking-widest shrink-0 hidden sm:block">
+                  {project.info.year}
+                </span>
+
+                {/* Arrow */}
+                <div className="w-6 h-px bg-foreground/20 group-hover:bg-accent group-hover:w-12 transition-all duration-300 shrink-0" />
               </Link>
             </ScrollReveal>
           ))}
