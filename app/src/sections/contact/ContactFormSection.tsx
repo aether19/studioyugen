@@ -98,8 +98,7 @@ export default function ContactFormSection() {
                   <option value="" disabled style={{ backgroundColor: '#111111', color: 'rgba(232,226,216,0.4)' }}>
                     Select a range...
                   </option>
-                  <option value="Under $1,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>Under $1,000</option>
-                  <option value="$1,000 - $5,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$1,000 - $5,000</option>
+                  <option value="$1,500 - $5,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$1,500 - $5,000</option>
                   <option value="$5,000 - $10,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$5,000 - $10,000</option>
                   <option value="$10,000+" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$10,000+</option>
                   <option value="Not sure yet" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>Not sure yet</option>
