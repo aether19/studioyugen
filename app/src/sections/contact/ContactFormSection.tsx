@@ -27,9 +27,17 @@ export default function ContactFormSection() {
       await submitContactForm(formData);
       toast.success('Thank you! We received your inquiry and will be in touch soon.');
       setFormData({ name: '', email: '', business: '', needs: '', budget: '' });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Form submission error:', error);
-      toast.error('Failed to send your inquiry. Please try again or email us directly.');
+
+      const errorMessage = error?.message || '';
+      if (errorMessage.includes('Supabase Configuration Required')) {
+        toast.error('Supabase not configured. Check console for setup instructions.');
+      } else if (errorMessage.includes('Cannot connect to Supabase')) {
+        toast.error('Cannot connect to Supabase. Check your environment variables.');
+      } else {
+        toast.error('Failed to send your inquiry. Please try again or email us directly.');
+      }
     } finally {
       setIsLoading(false);
     }

@@ -34,16 +34,18 @@ export async function submitContactForm(formData: ContactFormData) {
     } catch (e: any) {
       // If Supabase is not configured, show helpful error
       if (e.message && e.message.includes('Supabase is not configured')) {
-        console.error('📋 Supabase Configuration Required')
-        console.log('Please follow these steps:')
-        console.log('1. Go to supabase.com and create a project')
-        console.log('2. Copy your Project URL and Anon Key')
-        console.log('3. Create/edit app/.env.local with:')
-        console.log('   VITE_SUPABASE_URL=your_url')
-        console.log('   VITE_SUPABASE_ANON_KEY=your_key')
-        console.log('4. Restart the dev server')
-        throw new Error(e.message)
+        const message = '❌ Supabase Configuration Required\n\nPlease follow these steps:\n1. Go to supabase.com and create a project\n2. Copy your Project URL and Anon Key\n3. Create/edit app/.env.local with:\n   VITE_SUPABASE_URL=your_url\n   VITE_SUPABASE_ANON_KEY=your_key\n4. Restart the dev server'
+        console.error(message)
+        throw new Error(message)
       }
+
+      // Handle network/fetch errors (usually CORS or bad credentials)
+      if (e.message && e.message.includes('Failed to fetch')) {
+        const message = '❌ Cannot connect to Supabase\n\nThis usually means:\n1. Your VITE_SUPABASE_URL is incorrect\n2. Your VITE_SUPABASE_ANON_KEY is incorrect\n3. The Supabase server is down\n\nPlease verify your .env.local credentials are correct and restart the dev server.'
+        console.error(message)
+        throw new Error(message)
+      }
+
       throw e
     }
 
