@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     business: '',
     needs: '',
     budget: '',
@@ -25,7 +26,7 @@ export default function ContactFormSection() {
     try {
       await submitContactForm(formData);
       toast.success('Thank you! We received your inquiry and will be in touch soon.');
-      setFormData({ name: '', business: '', needs: '', budget: '' });
+      setFormData({ name: '', email: '', business: '', needs: '', budget: '' });
     } catch (error) {
       console.error('Form submission error:', error);
       toast.error('Failed to send your inquiry. Please try again or email us directly.');
@@ -52,6 +53,19 @@ export default function ContactFormSection() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="John Doe"
+                  className={inputClass}
+                  required
+                />
+              </div>
+
+              <div data-stagger-child className="mb-10">
+                <label className={labelClass}>Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
                   className={inputClass}
                   required
                 />

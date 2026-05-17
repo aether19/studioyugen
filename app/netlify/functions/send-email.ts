@@ -2,6 +2,7 @@ import { Handler } from '@netlify/functions'
 
 interface ContactFormData {
   name: string
+  email: string
   business: string
   needs: string
   budget: string
@@ -105,6 +106,7 @@ function generateEmailHTML(formData: ContactFormData): string {
       <div style="background: #f9f9f9; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
         <h2 style="color: #080808; margin-top: 0; font-size: 18px;">Client Information</h2>
         <p><strong>Name:</strong> ${escapeHtml(formData.name)}</p>
+        <p><strong>Email:</strong> <a href="mailto:${escapeHtml(formData.email)}" style="color: #080808; text-decoration: none;">${escapeHtml(formData.email)}</a></p>
         <p><strong>Business:</strong> ${formData.business ? escapeHtml(formData.business) : 'Not specified'}</p>
         <p><strong>Budget Range:</strong> ${escapeHtml(formData.budget)}</p>
       </div>

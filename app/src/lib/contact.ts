@@ -2,6 +2,7 @@ import { supabase } from './supabase'
 
 export interface ContactFormData {
   name: string
+  email: string
   business: string
   needs: string
   budget: string
@@ -19,6 +20,7 @@ export async function submitContactForm(formData: ContactFormData) {
         .insert([
           {
             name: formData.name,
+            email: formData.email,
             business: formData.business,
             needs: formData.needs,
             budget: formData.budget,
@@ -66,6 +68,7 @@ export async function submitContactForm(formData: ContactFormData) {
           },
           body: JSON.stringify({
             name: formData.name,
+            email: formData.email,
             business: formData.business,
             needs: formData.needs,
             budget: formData.budget,

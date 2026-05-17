@@ -20,6 +20,7 @@ Your contact form now:
 CREATE TABLE contact_submissions (
   id BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
   business VARCHAR(255),
   needs TEXT NOT NULL,
   budget VARCHAR(100),
