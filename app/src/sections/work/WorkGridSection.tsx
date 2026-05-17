@@ -1,97 +1,58 @@
-import { useState, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-import Container from '@/components/layout/Container';
-import Badge from '@/components/shared/Badge';
 import { projects } from '@/data/projects';
-import { useCursor } from '@/context/CursorContext';
-import { useIsDesktop } from '@/hooks/useMediaQuery';
-import StaggerReveal from '@/components/animation/StaggerReveal';
+import Container from '@/components/layout/Container';
+import ScrollReveal from '@/components/animation/ScrollReveal';
 
 export default function WorkGridSection() {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [mouseY, setMouseY] = useState(0);
-  const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const { setCursorType } = useCursor();
-  const isDesktop = useIsDesktop();
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent, index: number) => {
-      const row = rowRefs.current[index];
-      if (!row) return;
-      const rect = row.getBoundingClientRect();
-      setMouseY(e.clientY - rect.top);
-    },
-    []
-  );
-
   return (
-    <section className="pb-24 lg:pb-32 bg-background">
+    <section className="py-16 lg:py-24 bg-background">
       <Container>
-        <StaggerReveal staggerDelay={0.08}>
-          {projects.map((project, index) => (
-            <div key={project.id} data-stagger-child>
-              <div
-                ref={(el) => { rowRefs.current[index] = el; }}
-                className="relative border-t border-gray-200"
-                onMouseEnter={() => {
-                  setHoveredProject(project.id);
-                  if (isDesktop) setCursorType('view');
-                }}
-                onMouseLeave={() => {
-                  setHoveredProject(null);
-                  setCursorType('default');
-                }}
-                onMouseMove={(e) => handleMouseMove(e, index)}
+        <div>
+          {projects.map((project, i) => (
+            <ScrollReveal key={project.id} delay={i * 0.04}>
+              <Link
+                to={`/work/${project.slug}`}
+                className="group grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 py-12 border-b border-foreground/[0.08] hover:border-foreground/20 transition-colors duration-300 items-center"
               >
-                <Link
-                  to={`/work/${project.slug}`}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-8 lg:py-10 group"
-                >
-                  {/* Left */}
-                  <div className="flex items-center gap-6">
-                    <span className="font-display text-h4 text-gray-300 w-8">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="font-display text-h2 text-foreground group-hover:translate-x-2.5 transition-transform duration-300">
-                      {project.title}
-                    </h3>
-                  </div>
+                {/* Image */}
+                <div className={`aspect-[16/10] overflow-hidden bg-gray-100 ${i % 2 === 1 ? 'md:order-2' : ''}`}>
+                  <img
+                    src={project.image}
+                    alt={project.client}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                </div>
 
-                  {/* Right */}
-                  <div className="flex items-center gap-4 mt-4 sm:mt-0 pl-14 sm:pl-0">
-                    <div className="flex gap-2 flex-wrap">
-                      <Badge>{project.industry}</Badge>
-                      {project.services.map((s) => (
-                        <Badge key={s}>{s}</Badge>
-                      ))}
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 hidden sm:block" />
+                {/* Info */}
+                <div className={`flex flex-col justify-center gap-5 ${i % 2 === 1 ? 'md:order-1' : ''} md:px-8`}>
+                  <span className="font-body text-label text-foreground/20 tracking-widest">
+                    {String(i + 1).padStart(2, '0')} — {project.info.year || '2024'}
+                  </span>
+                  <h2 className="font-display text-h1 text-foreground group-hover:text-accent transition-colors duration-300">
+                    {project.client}
+                  </h2>
+                  <p className="font-body text-body text-foreground/30 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-1">
+                    {[project.industry, ...project.services].map((tag) => (
+                      <span
+                        key={tag}
+                        className="font-body text-label tracking-widest text-foreground/25 border border-foreground/[0.08] px-3 py-1.5"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
-                </Link>
-
-                {/* Hover Preview */}
-                {isDesktop && hoveredProject === project.id && (
-                  <div
-                    className="absolute right-[100px] top-0 z-10 pointer-events-none transition-opacity duration-300"
-                    style={{
-                      transform: `translateY(${Math.max(0, Math.min(mouseY - 120, 0))}px)`,
-                    }}
-                  >
-                    <div className="w-[320px] h-[240px] rounded-lg overflow-hidden shadow-xl">
-                      <img
-                        src={project.image}
-                        alt={project.client}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                  <div className="flex items-center gap-3 mt-3 text-foreground/25 group-hover:text-accent transition-colors duration-300">
+                    <span className="font-body text-label tracking-widest">View Project</span>
+                    <span className="w-8 h-px bg-current group-hover:w-16 transition-all duration-300" />
                   </div>
-                )}
-              </div>
-            </div>
+                </div>
+              </Link>
+            </ScrollReveal>
           ))}
-          <div data-stagger-child className="border-t border-gray-200" />
-        </StaggerReveal>
+        </div>
       </Container>
     </section>
   );

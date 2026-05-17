@@ -9,7 +9,7 @@ export const projects: Project[] = [
     industry: 'Healthcare',
     services: ['Web Design'],
     description: 'A modern web presence for a leading healthcare provider in Algeria.',
-    image: '/assets/images/projects/project_dr_aib.png',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F19285b5208fe4c5193d76a5dc8c7e510?format=webp&width=800&height=1200',
     info: {
       client: 'Dr. Aib',
       industry: 'Healthcare',
@@ -19,7 +19,7 @@ export const projects: Project[] = [
       about: 'Dr. Aib, a leading healthcare provider in Algeria, needed a modern web presence that reflects their commitment to patient care and medical excellence. We designed a clean, trustworthy website that makes it easy for patients to find information and book appointments.',
     },
     gallery: [
-      { src: '/assets/images/projects/project_dr_aib.png', alt: 'Dr. Aib website mockup', layout: 'full' },
+      { src: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F19285b5208fe4c5193d76a5dc8c7e510?format=webp&width=800&height=1200', alt: 'Dr. Aib website mockup', layout: 'full' },
     ],
     nextSlug: 'chi-link',
   },
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     industry: 'Wellness',
     services: ['Branding', 'Web Design'],
     description: 'Holistic wellness brand identity and website for an Australian studio.',
-    image: '/assets/images/projects/project_chi_link.png',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2Fda19549d7fa44563a02c38db3a7954f3?format=webp&width=800&height=1200',
     info: {
       client: 'Chi Link',
       industry: 'Wellness',
@@ -41,7 +41,7 @@ export const projects: Project[] = [
       about: 'Chi Link is a holistic wellness studio based in Australia. We created a complete brand identity — from logo and color system to a serene, calming website that embodies their philosophy of mind-body balance.',
     },
     gallery: [
-      { src: '/assets/images/projects/project_chi_link.png', alt: 'Chi Link brand mockup', layout: 'full' },
+      { src: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2Fda19549d7fa44563a02c38db3a7954f3?format=webp&width=800&height=1200', alt: 'Chi Link brand mockup', layout: 'full' },
     ],
     nextSlug: 'neosys',
   },
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     industry: 'SaaS',
     services: ['Web Design', 'Development'],
     description: 'Website redesign for a global SaaS company.',
-    image: '/assets/images/projects/project_neosys.png',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F62a327ea07e648cdb58e34240baa36ea?format=webp&width=800&height=1200',
     info: {
       client: 'Neosys',
       industry: 'SaaS',
@@ -63,7 +63,7 @@ export const projects: Project[] = [
       about: 'Neosys, a global SaaS company, needed a website redesign that reflected their innovative approach to software solutions. We crafted a modern, user-centric experience that communicates their value proposition with clarity and impact.',
     },
     gallery: [
-      { src: '/assets/images/projects/project_neosys.png', alt: 'Neosys website mockup', layout: 'full' },
+      { src: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F62a327ea07e648cdb58e34240baa36ea?format=webp&width=800&height=1200', alt: 'Neosys website mockup', layout: 'full' },
     ],
     nextSlug: 'thailand-football',
   },
@@ -74,18 +74,18 @@ export const projects: Project[] = [
     title: 'Thailand Football',
     industry: 'Sports',
     services: ['Web Design', 'Development'],
-    description: 'Digital platform for Thailand\'s football community.',
-    image: '/assets/images/projects/project_thailand_football.png',
+    description: "Digital platform for Thailand's football community.",
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F433f497c68184f029fda63e8af51c0d4?format=webp&width=800&height=1200',
     info: {
       client: 'Thailand Football',
       industry: 'Sports',
       services: 'Web Design, Development',
       location: 'Thailand',
       year: '2024',
-      about: 'We built a dynamic digital platform for Thailand\'s growing football community, featuring match schedules, team profiles, player stats, and live score updates. The design captures the energy and passion of the sport.',
+      about: "We built a dynamic digital platform for Thailand's growing football community, featuring match schedules, team profiles, player stats, and live score updates. The design captures the energy and passion of the sport.",
     },
     gallery: [
-      { src: '/assets/images/projects/project_thailand_football.png', alt: 'Thailand Football platform mockup', layout: 'full' },
+      { src: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F433f497c68184f029fda63e8af51c0d4?format=webp&width=800&height=1200', alt: 'Thailand Football platform mockup', layout: 'full' },
     ],
     nextSlug: 'shreddy',
   },
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     industry: 'Fitness App',
     services: ['UI/UX', 'Development'],
     description: 'Mobile app design for a fitness coaching platform.',
-    image: '/assets/images/projects/project_shreddy.png',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F07cd5716794b44708d83b05f967bd01f?format=webp&width=800&height=1200',
     info: {
       client: 'Shreddy',
       industry: 'Fitness',
@@ -107,7 +107,7 @@ export const projects: Project[] = [
       about: 'Shreddy is a fitness coaching app that needed an engaging, motivational UI. We designed an energetic yet clean interface that keeps users motivated through their fitness journey with progress tracking and workout plans.',
     },
     gallery: [
-      { src: '/assets/images/projects/project_shreddy.png', alt: 'Shreddy app mockup', layout: 'full' },
+      { src: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F07cd5716794b44708d83b05f967bd01f?format=webp&width=800&height=1200', alt: 'Shreddy app mockup', layout: 'full' },
     ],
     nextSlug: 'moupera',
   },
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     industry: 'SaaS',
     services: ['Landing Page'],
     description: 'Landing page design for an innovative SaaS product.',
-    image: '/assets/images/projects/project_moupera.png',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F16c03ba40d7648318b74fd7d1c8b1e73?format=webp&width=800&height=1200',
     info: {
       client: 'Moupera',
       industry: 'SaaS',
@@ -129,7 +129,7 @@ export const projects: Project[] = [
       about: 'Moupera needed a high-converting landing page for their innovative SaaS product. We designed a focused, compelling page that clearly communicates their value proposition and drives sign-ups.',
     },
     gallery: [
-      { src: '/assets/images/projects/project_moupera.png', alt: 'Moupera landing page mockup', layout: 'full' },
+      { src: 'https://cdn.builder.io/api/v1/image/assets%2F256e4933475b4e70b4bdbc906fdb0009%2F16c03ba40d7648318b74fd7d1c8b1e73?format=webp&width=800&height=1200', alt: 'Moupera landing page mockup', layout: 'full' },
     ],
     nextSlug: 'dr-aib',
   },

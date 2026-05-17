@@ -5,10 +5,10 @@ interface BadgeProps {
 }
 
 export default function Badge({ children, className = '', variant = 'default' }: BadgeProps) {
-  const base = 'inline-block border border-gray-300 rounded-pill px-4 py-1.5 text-label font-body';
+  const base = 'inline-block border px-3 py-1.5 font-body text-label tracking-widest';
   const colorClass = variant === 'light'
-    ? 'border-white/30 text-white'
-    : 'text-foreground hover:border-accent transition-colors duration-200';
+    ? 'border-white/20 text-white/60'
+    : 'border-foreground/10 text-foreground/30';
 
   return (
     <span className={`${base} ${colorClass} ${className}`}>

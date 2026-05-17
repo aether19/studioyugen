@@ -1,56 +1,57 @@
 import { Link } from 'react-router-dom';
 import Container from './Container';
-import { useCursor } from '@/context/CursorContext';
 
 export default function Footer() {
-  const { setCursorType } = useCursor();
-
   return (
-    <footer className="bg-dark text-white">
+    <footer className="bg-[#040404] border-t border-foreground/[0.08]">
       <Container>
         {/* Top CTA */}
-        <div className="pt-24 pb-20 border-b border-white/10">
-          <h2 className="font-display text-display-s text-white">
-            Have a project?{' '}
+        <div className="py-20 border-b border-foreground/[0.08]">
+          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-5 h-px bg-accent" />
+                <span className="font-body text-label text-accent tracking-widest">Get In Touch</span>
+              </div>
+              <h2 className="font-display text-display-s text-foreground">
+                Have a project?{' '}
+                <Link
+                  to="/contact"
+                  className="italic text-foreground/30 hover:text-accent transition-colors duration-300 underline underline-offset-8 decoration-foreground/10"
+                >
+                  Let&apos;s talk.
+                </Link>
+              </h2>
+            </div>
             <Link
               to="/contact"
-              className="underline underline-offset-8 decoration-1 hover:text-accent transition-colors duration-200"
-              onMouseEnter={() => setCursorType('link')}
-              onMouseLeave={() => setCursorType('default')}
+              className="group flex items-center gap-4 font-body text-label tracking-widest text-foreground border border-foreground/15 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300 shrink-0"
             >
-              Let&apos;s talk.
+              <span>Start Project</span>
+              <span className="w-5 h-px bg-current group-hover:w-8 transition-all duration-300" />
             </Link>
-          </h2>
+          </div>
         </div>
 
-        {/* Middle Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 py-16">
-          {/* Logo & Description */}
-          <div>
-            <Link
-              to="/"
-              className="font-display text-h3 text-white"
-              onMouseEnter={() => setCursorType('link')}
-              onMouseLeave={() => setCursorType('default')}
-            >
+        {/* Grid */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 py-16 border-b border-foreground/[0.08]">
+          <div className="col-span-2 lg:col-span-1">
+            <Link to="/" className="font-display text-h3 text-foreground hover:text-accent transition-colors duration-300">
               Yugen
             </Link>
-            <p className="mt-4 font-body text-body-sm text-white/50 leading-relaxed">
-              Boutique creative studio specializing in branding, web design, and development for businesses worldwide.
+            <p className="mt-4 font-body text-body-sm text-foreground/25 leading-relaxed max-w-[200px]">
+              Boutique creative studio. Branding, web design & development.
             </p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h4 className="text-label font-body text-white/40 mb-6">Navigation</h4>
-            <ul className="space-y-3">
+            <h4 className="font-body text-label text-foreground/15 tracking-widest mb-6">Navigation</h4>
+            <ul className="space-y-4">
               {['Work', 'Services', 'About', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase()}`}
-                    className="font-body text-body text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
-                    onMouseEnter={() => setCursorType('link')}
-                    onMouseLeave={() => setCursorType('default')}
+                    className="font-body text-body-sm text-foreground/30 hover:text-foreground transition-colors duration-200"
                   >
                     {item}
                   </Link>
@@ -59,17 +60,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="text-label font-body text-white/40 mb-6">Services</h4>
-            <ul className="space-y-3">
+            <h4 className="font-body text-label text-foreground/15 tracking-widest mb-6">Services</h4>
+            <ul className="space-y-4">
               {['Branding', 'Web Design', 'Development'].map((item) => (
                 <li key={item}>
                   <Link
                     to="/services"
-                    className="font-body text-body text-white/70 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
-                    onMouseEnter={() => setCursorType('link')}
-                    onMouseLeave={() => setCursorType('default')}
+                    className="font-body text-body-sm text-foreground/30 hover:text-foreground transition-colors duration-200"
                   >
                     {item}
                   </Link>
@@ -78,31 +76,31 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="text-label font-body text-white/40 mb-6">Contact</h4>
-            <ul className="space-y-3">
+            <h4 className="font-body text-label text-foreground/15 tracking-widest mb-6">Contact</h4>
+            <ul className="space-y-4">
               <li>
                 <a
                   href="mailto:contact.studioyugen@gmail.com"
-                  className="font-body text-body text-white/70 hover:text-white transition-colors duration-200"
-                  onMouseEnter={() => setCursorType('link')}
-                  onMouseLeave={() => setCursorType('default')}
+                  className="font-body text-body-sm text-foreground/30 hover:text-foreground transition-colors duration-200"
                 >
                   contact.studioyugen@gmail.com
                 </a>
               </li>
-              <li className="font-body text-body text-white/50">
-                USA / Canada / Australia / Algeria
+              <li className="font-body text-body-sm text-foreground/15">
+                USA · Canada · Australia · Algeria
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-body text-body-sm text-white/40">
-            2026 Yugen Studio. All rights reserved.
+        {/* Bottom */}
+        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="font-body text-label text-foreground/15 tracking-widest">
+            © 2026 Yugen Studio. All rights reserved.
+          </p>
+          <p className="font-body text-label text-foreground/15 tracking-widest">
+            Crafted with precision.
           </p>
         </div>
       </Container>

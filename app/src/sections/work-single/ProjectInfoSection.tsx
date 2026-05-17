@@ -18,13 +18,16 @@ export default function ProjectInfoSection({ project }: ProjectInfoSectionProps)
   ];
 
   return (
-    <section className="py-20 lg:py-24 bg-background">
+    <section className="py-20 lg:py-24 bg-background border-b border-foreground/[0.08]">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           <ScrollReveal type="fade-up" className="lg:col-span-3">
             <div>
-              <p className="text-label font-body text-accent mb-4">About the Project</p>
-              <p className="font-body text-body-lg text-gray-500 leading-relaxed">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-5 h-px bg-accent" />
+                <span className="font-body text-label text-accent tracking-widest">About the Project</span>
+              </div>
+              <p className="font-body text-body-lg text-foreground/40 leading-relaxed">
                 {project.info.about}
               </p>
             </div>
@@ -32,9 +35,9 @@ export default function ProjectInfoSection({ project }: ProjectInfoSectionProps)
           <ScrollReveal type="fade-up" delay={0.1} className="lg:col-span-2">
             <div className="space-y-6">
               {infoItems.map((item) => (
-                <div key={item.label}>
-                  <p className="text-label font-body text-gray-400 mb-1">{item.label}</p>
-                  <p className="font-body text-body text-foreground">{item.value}</p>
+                <div key={item.label} className="py-4 border-b border-foreground/[0.08]">
+                  <p className="font-body text-label text-foreground/20 tracking-widest mb-2">{item.label}</p>
+                  <p className="font-body text-body text-foreground/70">{item.value}</p>
                 </div>
               ))}
             </div>

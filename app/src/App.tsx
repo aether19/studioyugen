@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { CursorProvider } from '@/context/CursorContext';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import CustomCursor from '@/components/animation/CustomCursor';
 import ScrollProgress from '@/components/animation/ScrollProgress';
 import HomePage from '@/pages/HomePage';
 import WorkPage from '@/pages/WorkPage';
@@ -24,7 +23,6 @@ export default function App() {
   return (
     <CursorProvider>
       <ScrollToTop />
-      <CustomCursor />
       <ScrollProgress />
       <Navbar />
       <main>

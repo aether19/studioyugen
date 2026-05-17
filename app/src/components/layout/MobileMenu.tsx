@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
 
+interface MobileMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 const navLinks = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '/services' },
@@ -7,47 +12,38 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
-interface MobileMenuProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
     <div
-      className={`fixed inset-0 z-menu bg-background flex flex-col items-center justify-center transition-all duration-500 lg:hidden ${
+      className={`fixed inset-0 z-menu bg-[#080808] flex flex-col transition-all duration-500 ${
         isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
     >
-      <div className="flex flex-col items-center gap-8">
-        {navLinks.map((link, index) => (
+      <div className="h-[72px]" />
+
+      <nav className="flex-1 flex flex-col justify-center px-8">
+        {navLinks.map((link, i) => (
           <Link
             key={link.href}
             to={link.href}
             onClick={onClose}
-            className="font-display text-display-m text-foreground hover:text-accent transition-all duration-300"
-            style={{
-              transitionDelay: isOpen ? `${index * 100}ms` : '0ms',
-              transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
-              opacity: isOpen ? 1 : 0,
-            }}
+            className="group flex items-baseline justify-between py-6 border-b border-foreground/10 hover:border-accent/30 transition-colors duration-300"
           >
-            {link.label}
+            <span className="font-display text-display-s text-foreground group-hover:text-accent transition-colors duration-300">
+              {link.label}
+            </span>
+            <span className="font-body text-label text-foreground/20 tracking-widest">
+              0{i + 1}
+            </span>
           </Link>
         ))}
+      </nav>
+
+      <div className="px-8 pb-12 border-t border-foreground/10 pt-8">
+        <p className="font-body text-label text-foreground/20 tracking-widest">
+          contact.studioyugen@gmail.com
+        </p>
       </div>
-      <Link
-        to="/contact"
-        onClick={onClose}
-        className="mt-12 bg-accent text-white font-body text-lg px-10 py-3 rounded-pill hover:bg-accent-light transition-all duration-300"
-        style={{
-          transitionDelay: isOpen ? '400ms' : '0ms',
-          transform: isOpen ? 'translateY(0)' : 'translateY(20px)',
-          opacity: isOpen ? 1 : 0,
-        }}
-      >
-        Let&apos;s Talk
-      </Link>
     </div>
   );
 }
