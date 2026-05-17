@@ -5,26 +5,6 @@ import Container from '@/components/layout/Container';
 export default function HeroSection() {
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-end bg-background pb-16 pt-[72px] overflow-hidden">
-      {/* Top status bar */}
-      <div
-        className="absolute top-[72px] left-0 right-0 border-b border-foreground/[0.08] opacity-0 animate-fade-in"
-        style={{ animationDelay: '200ms', animationFillMode: 'forwards', animationDuration: '600ms' }}
-      >
-        <Container className="flex items-center justify-between h-10">
-          <span className="font-body text-label text-foreground/20 tracking-widest">Est. 2024</span>
-          <span className="font-body text-label text-foreground/20 tracking-widest">Creative Studio</span>
-          <span className="font-body text-label text-foreground/20 tracking-widest">Worldwide</span>
-        </Container>
-      </div>
-
-      {/* Ghost index number */}
-      <div
-        className="absolute top-1/2 right-6 lg:right-16 -translate-y-1/2 font-display text-[clamp(120px,18vw,280px)] text-foreground/[0.03] select-none pointer-events-none leading-none"
-        aria-hidden="true"
-      >
-        001
-      </div>
-
       <Container>
         {/* Eyebrow */}
         <div
