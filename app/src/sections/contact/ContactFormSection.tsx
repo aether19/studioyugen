@@ -2,24 +2,45 @@ import { useState } from 'react';
 import Container from '@/components/layout/Container';
 import StaggerReveal from '@/components/animation/StaggerReveal';
 import ScrollReveal from '@/components/animation/ScrollReveal';
+import { submitContactForm } from '@/lib/contact';
+import { toast } from 'sonner';
 
 export default function ContactFormSection() {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     business: '',
     needs: '',
     budget: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `Project Inquiry from ${formData.name} - ${formData.business}`;
-    const body = `Name: ${formData.name}\nBusiness: ${formData.business}\nBudget: ${formData.budget}\n\nWhat I need:\n${formData.needs}`;
-    window.location.href = `mailto:contact.studioyugen@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setIsLoading(true);
+
+    try {
+      await submitContactForm(formData);
+      toast.success('Thank you! We received your inquiry and will be in touch soon.');
+      setFormData({ name: '', email: '', business: '', needs: '', budget: '' });
+    } catch (error: any) {
+      console.error('Form submission error:', error);
+
+      const errorMessage = error?.message || '';
+      if (errorMessage.includes('Supabase Configuration Required')) {
+        toast.error('Supabase not configured. Check console for setup instructions.');
+      } else if (errorMessage.includes('Cannot connect to Supabase')) {
+        toast.error('Cannot connect to Supabase. Check your environment variables.');
+      } else {
+        toast.error('Failed to send your inquiry. Please try again or email us directly.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const inputClass = "w-full bg-transparent border-0 border-b border-foreground/10 py-4 font-body text-body text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-accent transition-colors duration-300";
@@ -40,6 +61,19 @@ export default function ContactFormSection() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="John Doe"
+                  className={inputClass}
+                  required
+                />
+              </div>
+
+              <div data-stagger-child className="mb-10">
+                <label className={labelClass}>Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="your@email.com"
                   className={inputClass}
                   required
                 />
@@ -86,8 +120,7 @@ export default function ContactFormSection() {
                   <option value="" disabled style={{ backgroundColor: '#111111', color: 'rgba(232,226,216,0.4)' }}>
                     Select a range...
                   </option>
-                  <option value="Under $1,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>Under $1,000</option>
-                  <option value="$1,000 - $5,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$1,000 - $5,000</option>
+                  <option value="$1,500 - $5,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$1,500 - $5,000</option>
                   <option value="$5,000 - $10,000" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$5,000 - $10,000</option>
                   <option value="$10,000+" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>$10,000+</option>
                   <option value="Not sure yet" style={{ backgroundColor: '#111111', color: '#e8e2d8' }}>Not sure yet</option>
@@ -97,9 +130,10 @@ export default function ContactFormSection() {
               <div data-stagger-child>
                 <button
                   type="submit"
-                  className="group flex items-center gap-4 font-body text-label tracking-widest text-foreground border border-foreground/20 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300"
+                  disabled={isLoading}
+                  className="group flex items-center gap-4 font-body text-label tracking-widest text-foreground border border-foreground/20 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Send Message</span>
+                  <span>{isLoading ? 'Sending...' : 'Send Message'}</span>
                   <span className="w-6 h-px bg-current group-hover:w-10 transition-all duration-300" />
                 </button>
               </div>

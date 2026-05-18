@@ -1,4 +1,3 @@
-import { Check } from 'lucide-react';
 import Container from '@/components/layout/Container';
 import ScrollReveal from '@/components/animation/ScrollReveal';
 import type { Service } from '@/types';
